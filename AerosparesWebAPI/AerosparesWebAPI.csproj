@@ -9,7 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="QuantumEntities\" />
+    <Compile Remove="QuantumEntities\**" />
+    <Content Remove="QuantumEntities\**" />
+    <EmbeddedResource Remove="QuantumEntities\**" />
+    <None Remove="QuantumEntities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\DataAccess.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
