@@ -20,6 +20,7 @@ using AerosparesWebAPI.Repositories;
 using AerosparesWebAPI.Services;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
+
 namespace AerosparesWebAPI
 {
     public class Startup
@@ -36,12 +37,16 @@ namespace AerosparesWebAPI
         //  <add name = "Connection" connectionString="data source=MAXQPROD;dba privilege=SYSDBA;password=masterkey;persist security info=True;user id=SYS" providerName="Oracle.DataAccess.Client" />
 
         //Scaffold-DbContext "User Id=SYS;Password=masterkey;dba privilege=SYSDBA;Data Source=aero-spares-db2:1521/CCTL;" Oracle.EntityFrameworkCore -OutputDir QuantumEntities
-
+        
+        // Scaffold-DbContext "User Id=SYS;Password=masterkey;dba privilege=SYSDBA;Data Source=aero-spares-db2:1521/CCTL;" Oracle.EntityFrameworkCore -OutputDir Models -Tables QCTL.AGENTS,QCTL.ALTERNATE_TYPE_CODES,QCTL.AP_ACCOUNT,QCTL.AP_DETAIL,QCTL.APPLICATION_CODES,QCTL.AR_ACCOUNT,QCTL.AR_DETAIL,QCTL.COMPANIES,QCTL.COMPANY_LIST,QCTL.CQ_DETAIL,QCTL.CQ_HEADER,QCTL.CQ_STATUS,QCTL.CURRENCY,QCTL.INVC_DETAIL,QCTL.INVC_HEADER,QCTL.PARTS_CATALOG,QCTL.PARTS_MASTER,QCTL.PO_DETAIL,QCTL.PO_HEADER,QCTL.PO_STATUS,QCTL.RC_DETAIL,QCTL.RC_DISP_CODES,QCTL.RC_HEADER,QCTL.RC_SERIAL,QCTL.RC_STATUS,QCTL.RO_CATEGORY_CODES,QCTL.RO_CONTROL,QCTL.RO_DETAIL,QCTL.RO_HEADER,QCTL.RO_PIECE_PARTS,QCTL.RO_PRE_COSTING_CHARGES,QCTL.RO_SALES,QCTL.RO_STATUS,QCTL.SM_DETAIL,QCTL.SM_HEADER,QCTL.SM_HISTORY,QCTL.SM_STATUS,QCTL.SO_DETAIL,QCTL.SO_HEADER,QCTL.SO_STATUS,QCTL.STOCK,QCTL.SYS_USERS
+         
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
             services.AddDbContext<AccountDbContext>(opt => opt.UseInMemoryDatabase("AerosparesWebAPIDatabase"));
+           // services.AddDbContext<QDBContext>(options => options.UseOracle(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddCustomCors("AllowAllOrigins");
 
             services.AddSingleton<ISeedDataService, SeedDataService>();
